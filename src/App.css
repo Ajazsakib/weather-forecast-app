@@ -1,38 +1,127 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.App h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+.container {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.search-bar {
+    width: 60%;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-bar input {
+    height: 50px;
+    border: 1px solid #999999;
+    padding-left: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    width: 60%;
+}
+.search-bar input:focus {
+    outline: 0;
+}
+.search-btn {
+    width: 120px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    background-color: blueviolet;
+    color: #ffffff;
+    margin-left: -1px;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.temp-converter {
+    height: 50px;
+    background-color: blueviolet;
+    color: #ffffff;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 6px 16px;
+    cursor: pointer;
+}
+.current-weather {
+    width: 100%;
+    margin-bottom: 30px;
+}
+.forecast-weather {
+    width: 100%;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+ 
+table tr {
+    width: 100%;
+}
+table tr th {
+    background-color: #ededed;
+}
+table tr th, table tr td{
+    padding: 12px;
+    font-size: 14px;
+    color: #333333;
+    border: 1px solid #ededed;
+    text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+    .temp-converter {
+        position: relative;
+        width: 100%;
+    }
+    .search-bar {
+        margin-top: 30px;
+        width: 100%;
+    }
+        .current-weather {
+            overflow-x: auto;
+        }
+        .forecast-weather {
+            overflow-x: auto;
+        }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .current-weather {
+            overflow-x: auto;
+        }
+    
+        .forecast-weather {
+            overflow-x: auto;
+        }
+                .temp-converter {
+                    position: relative;
+                  
+                }
+                .search-bar {
+                    width: 100%;
+                    margin-top: 30px;
+                }
 }

@@ -13,7 +13,7 @@ function App()
 
   const [weatherDetails, setWeatherDetails] = useState(null);
   const [foreCastDetails, setForecastDetails] = useState(null);
-  const [isTempCelcius, setIsTempCelcius] = useState(true)
+  const [isTempCelcius, setIsTempCelcius] = useState(false)
   const [realWeather, setRealWeather] = useState(null)
   const [forecastWeather, setForecastWeather] = useState(null)
   let weatherData = {};
@@ -35,6 +35,7 @@ function App()
   {
 
     setIsTempCelcius(!isTempCelcius)
+
     let currentTempCel = (realWeather.data.main.temp - 273.15).toFixed(0);
     let minTempCel = (realWeather.data.main.temp_max - 273.15).toFixed(0);
     let maxTempCel = (realWeather.data.main.temp_max - 273.15).toFixed(0);
@@ -85,6 +86,7 @@ function App()
         fetchTempreature(realWeather, forecastWeather);
         setRealWeather(realWeather);
         setForecastWeather(forecastWeather)
+
       }
 
     } catch (err) {
@@ -115,10 +117,13 @@ function App()
       <ToastContainer />
       <h1>Weather Forecast App</h1>
       <div className="container">
-        <button className="temp-converter" onClick={() =>
         {
-          convertTempreature(realWeather, forecastWeather)
-        }}>Convert Into Farenheit</button>
+          weatherDetails && <button className="temp-converter" onClick={() =>
+          {
+            convertTempreature(realWeather, forecastWeather)
+          }}>{isTempCelcius ? "Convert Into Farenheit" : "Convert Into Celcius"}</button>
+        }
+
         <Input
           handleSubmit={handleSubmit}
         />

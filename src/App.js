@@ -23,8 +23,8 @@ function App()
 
   const convertTempreature = (realWeather, forecastWeather) =>
   {
-    setIsTempCelcius(!isTempCelcius)
     fetchTempreature(realWeather, forecastWeather)
+
   }
 
 
@@ -34,7 +34,7 @@ function App()
   const fetchTempreature = (realWeather, forecastWeather) =>
   {
 
-    console.log("realWeather", realWeather)
+    setIsTempCelcius(!isTempCelcius)
     let currentTempCel = (realWeather.data.main.temp - 273.15).toFixed(0);
     let minTempCel = (realWeather.data.main.temp_max - 273.15).toFixed(0);
     let maxTempCel = (realWeather.data.main.temp_max - 273.15).toFixed(0);
@@ -42,7 +42,7 @@ function App()
     let currentTempFar = (currentTempCel * 9 / 5) + 32;
     let minTempFar = (minTempCel * 9 / 5) + 32;
     let maxTempFar = (maxTempCel * 9 / 5) + 32;
-
+    console.log("isTempCelcius", isTempCelcius)
     weatherData = {
       ...weatherData,
       currentTemp: isTempCelcius ? currentTempCel : currentTempFar,
@@ -76,13 +76,17 @@ function App()
   const handleSubmit = async (cityName) =>
   {
     try {
-      const realWeather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName},IN&APPID=2e88c1fb66dc3131ad9f98262754e88b`);
+      if (cityName) {
+        setIsTempCelcius(true)
+        const realWeather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName},IN&APPID=2e88c1fb66dc3131ad9f98262754e88b`);
 
-      const forecastWeather = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName},IN&APPID=2e88c1fb66dc3131ad9f98262754e88b`);
+        const forecastWeather = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName},IN&APPID=2e88c1fb66dc3131ad9f98262754e88b`);
 
-      fetchTempreature(realWeather, forecastWeather);
-      setRealWeather(realWeather);
-      setForecastWeather(forecastWeather)
+        fetchTempreature(realWeather, forecastWeather);
+        setRealWeather(realWeather);
+        setForecastWeather(forecastWeather)
+      }
+
     } catch (err) {
       console.log(err.response.data.message);
       toast.error(err.response.data.message, {

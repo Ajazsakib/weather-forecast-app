@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './App.css';
 import axios from "axios";
 import { weatherIcons } from "./iconData";
@@ -96,10 +96,6 @@ function App()
     }
 
   }
-
-
-
-
 
   const handleDateFormat = (dt) =>
   {
